@@ -4,10 +4,6 @@
 # java 
 *.jar 
 
-# you'll need these jars 
-!spark-streaming-kafka-0-8-assembly_2.11-2.1.1.jar 
-!bdc-spark-scala_2.11-1.0.jar  
-
 # Scala target 
 *.class  
 
@@ -16,8 +12,9 @@ dist/*
 target/ 
 lib_managed/ 
 src_managed/ 
-project/boot/ 
-project/plugins/project/ 
+project/
+!project/build.properties
+!project/plugins.sbt
 .history 
 .cache 
 .lib/

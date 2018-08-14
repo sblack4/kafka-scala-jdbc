@@ -4,14 +4,11 @@ import org.apache.spark.sql.Dataset
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types
 import org.apache.spark.sql.Row
-import scala.util.Random
-import java.time.format.DateTimeFormatter
-import java.time.LocalDate
 
 
-object Utils {
+object utils {
 
-    def handleJson(df: Dataset[Ticket]) = {
+    def handleJson(df: Dataset[classes.Ticket]) = {
         val tickets = df.select(
             "id",
             "date",
@@ -23,5 +20,5 @@ object Utils {
             .write.mode("append")
             .insertInto("default.tickets")
     }
-    
+
 }

@@ -1,3 +1,4 @@
+
 name := "kafka-spark-jdbc"
 organization := "com.github.unofficialoraclecloudhub"
 version := "1.0"
@@ -14,5 +15,6 @@ libraryDependencies ++= Seq(
     "org.apache.spark" %% "spark-sql" % sparkVersion,
     "org.apache.spark" %% "spark-streaming" % sparkVersion,
     "org.apache.spark" %% "spark-streaming-kafka-0-8-assembly" % "2.1.1",
-    "org.apache.spark" %% "spark-hive" % sparkVersion
+    "org.apache.spark" %% "spark-hive" % sparkVersion,
+    "com.typesafe" % "config" % "1.3.2"
 )
