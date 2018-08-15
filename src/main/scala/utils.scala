@@ -8,6 +8,7 @@ import org.apache.spark.sql.Row
 
 object utils {
 
+
     def handleJson(df: Dataset[classes.Ticket]) = {
         val tickets = df.select(
             "id",
@@ -16,9 +17,18 @@ object utils {
             "comment"
         )
 
-        tickets.filter("id IS NOT null")
-            .write.mode("append")
-            .insertInto("default.tickets")
+        tickets.foreach(row => {
+            val query = s"""
+            insert into tickets values ($row.id, $row.date, $row.category, $row.comment)
+            """
+            database.write(query)
+
+        })
+
+
+        // tickets.filter("id IS NOT null")
+        //     .write.mode("append")
+        //     .insertInto("default.tickets")
     }
 
 }

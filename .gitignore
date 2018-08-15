@@ -1,3 +1,5 @@
+wallet*
+
 # logs can get REALLY big 
 *.log  
 
@@ -18,3 +20,5 @@ project/
 .history 
 .cache 
 .lib/
+
+lib/*
