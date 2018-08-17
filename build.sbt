@@ -1,4 +1,3 @@
-
 name := "kafka-spark-jdbc"
 organization := "com.github.unofficialoraclecloudhub"
 version := "1.0"

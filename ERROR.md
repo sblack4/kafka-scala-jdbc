@@ -1,41 +1,7 @@
-# Kafka -> Spark Streaming -> JDBC (ADWC)
-why? because scalability. 
-
-## about 
-The goal is to take kafka data into spark, do a little parsing, and write it to Oracle's Autonomous Data Warehouse Cloud via a JDBC connection. 
+## Help me StackOverflow! You're my only hope!
 
 
-## developing 
-remember sbt? 
-
-compile with `sbt compile`
-
-
-
-## Resources 
-
-download the driver   
-http://www.oracle.com/technetwork/database/application-development/jdbc/downloads/index.html
-
-ADWC JDBC docs   
-https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/connect-jdbc-thin-wallet.html 
-
-Oracle DB 18 JDBC docs  
-https://docs.oracle.com/en/database/oracle/oracle-database/18/jjdbc/introducing-JDBC.html 
-
-jdbc docs  
-https://docs.oracle.com/en/database/oracle/oracle-database/18/jajdb/index.html  
-
-
-more on oracle's jdbc and ssl   
-https://www.oracle.com/technetwork/database/enterprise-edition/wp-oracle-jdbc-thin-ssl-130128.pdf
-
-
-## changelog 
-
-#### 2018-08-15
-
-When hdfs is included 
+When `hdfs://` is included 
 
 ```log
 Exception in thread "main" java.sql.SQLException: encountered a problem with the Secret Store. Check the wallet location for the presence of an open wallet (cwallet.sso) and ensure that this wallet contains the correct credentials using the mkstore utility: java.io.IOException: Unsupported WRL typehdfs:///user/spark/wallet_LUIGI
@@ -63,7 +29,7 @@ Exception in thread "main" java.sql.SQLException: encountered a problem with the
 	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
 ```
 
-When hdfs is not included
+When `hdfs://` is not included
 
 ```log
 Exception in thread "main" java.sql.SQLRecoverableException: IO Error: Unknown host specified 
@@ -97,12 +63,4 @@ Caused by: oracle.net.ns.NetException: Unknown host specified
 	... 18 more
 ```
 
-#### 2018-08-15
-the jdbc stuff should work - testing it and changing it to a fat jar 
-nevermind the fat jar was a bad idea 
 
-#### 2018-08-15
-working on merging in the jdbc stuff
-
-#### 2018-08-14
-it works for the streaming part 

@@ -1,5 +1,11 @@
 wallet*
 
+.DS_Store
+
+env.sh
+
+*.gz
+
 # logs can get REALLY big 
 *.log  
 
@@ -22,3 +28,4 @@ project/
 .lib/
 
 lib/*
+notlib/*
