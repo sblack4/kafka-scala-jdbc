@@ -6,6 +6,7 @@ import org.apache.spark.streaming._
 import org.apache.spark.streaming.kafka._
 
 
+
 object Main {
     def main(args: Array[String]) = {
 
@@ -18,6 +19,7 @@ object Main {
         val user = args(2)
         val password = args(3)
         val connection = args(4)
+        val filePath = args(5)
 
         println("--- stuff ---")
         println(brokers)
@@ -29,14 +31,15 @@ object Main {
             insert into tickets values ('asdfgafsd','asfdafsd','asdffasd','asffasd')
             """
 
-        database.write(query, connection, user, password)
-        // database.setOds(connection, user, password)
 
         val spark = SparkSession
             .builder()
             .appName("Stream to ADWC")
             .config("master", "yarn")
             .getOrCreate()
+
+        database.setOds(spark, filePath, connection, user, password)
+        database.write(query, connection, user, password)
 
         import spark.implicits._
         val ssc = new StreamingContext(spark.sparkContext, Seconds(5))
