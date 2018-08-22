@@ -46,24 +46,35 @@ object Main {
 
         log.warn("ADWC FULL CONNECTION STRING: " + fullConn)
 
-        val ods = new OracleDataSource()
-        ods.setURL(fullConn)
-        ods.setUser(user)
-        ods.setPassword(password)
-        log.info("Database Connection done")
+        Security.insertProviderAt(new OraclePKIProvider, 3) 
+        System.setProperty("oracle.net.tns_admin", localpath)
+        System.setProperty("oracle.net.wallet_location", localpath)
 
-         val query = """
-            insert into tickets values ('asdfgafsd','asfdafsd','asdffasd','asffasd')
-            """       
+        val props = new java.util.Properties
+        props.setProperty("user", user)
+        props.setProperty("password", password)
+        props.setProperty("driver","oracle.jdbc.OracleDriver")
 
-        val conn = ods.getConnection()
-        val stmt = conn.createStatement()
+        val utables = spark.sqlContext.read.jdbc(fullConn, "user_tables", props)
 
-        val rset = stmt.executeQuery(query)
+        // val ods = new OracleDataSource()
+        // ods.setURL(fullConn)
+        // ods.setUser(user)
+        // ods.setPassword(password)
+        // log.info("Database Connection done")
 
-        rset.close()
-        stmt.close()
-        conn.close()
+        //  val query = """
+        //     insert into tickets values ('asdfgafsd','asfdafsd','asdffasd','asffasd')
+        //     """       
+
+        // val conn = ods.getConnection()
+        // val stmt = conn.createStatement()
+
+        // val rset = stmt.executeQuery(query)
+
+        // rset.close()
+        // stmt.close()
+        // conn.close()
 
         // import spark.implicits._
         // val ssc = new StreamingContext(spark.sparkContext, Seconds(5))
