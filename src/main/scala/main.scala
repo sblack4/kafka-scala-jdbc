@@ -50,31 +50,31 @@ object Main {
         System.setProperty("oracle.net.tns_admin", localpath)
         System.setProperty("oracle.net.wallet_location", localpath)
 
-        val props = new java.util.Properties
-        props.setProperty("user", user)
-        props.setProperty("password", password)
-        props.setProperty("driver","oracle.jdbc.OracleDriver")
+        // val props = new java.util.Properties
+        // props.setProperty("user", user)
+        // props.setProperty("password", password)
+        // props.setProperty("driver","oracle.jdbc.OracleDriver")
 
-        val utables = spark.sqlContext.read.jdbc(fullConn, "user_tables", props)
+        // val utables = spark.sqlContext.read.jdbc(fullConn, "user_tables", props)
 
-        // val ods = new OracleDataSource()
-        // ods.setURL(fullConn)
-        // ods.setUser(user)
-        // ods.setPassword(password)
-        // log.info("Database Connection done")
+        val ods = new OracleDataSource()
+        ods.setURL(fullConn)
+        ods.setUser(user)
+        ods.setPassword(password)
+        log.info("Database Connection done")
 
-        //  val query = """
-        //     insert into tickets values ('asdfgafsd','asfdafsd','asdffasd','asffasd')
-        //     """       
+         val query = """
+            insert into tickets values ('asdfgafsd','asfdafsd','asdffasd','asffasd')
+            """       
 
-        // val conn = ods.getConnection()
-        // val stmt = conn.createStatement()
+        val conn = ods.getConnection()
+        val stmt = conn.createStatement()
 
-        // val rset = stmt.executeQuery(query)
+        val rset = stmt.executeQuery(query)
 
-        // rset.close()
-        // stmt.close()
-        // conn.close()
+        rset.close()
+        stmt.close()
+        conn.close()
 
         // import spark.implicits._
         // val ssc = new StreamingContext(spark.sparkContext, Seconds(5))
